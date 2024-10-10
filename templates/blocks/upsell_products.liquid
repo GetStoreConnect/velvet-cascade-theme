@@ -1,0 +1,27 @@
+<div id="SC-UpsellProducts-{{ content_block.identifier }}" class="SC-UpsellProducts">
+  <div class="SC-UpsellProducts_header sc-pe-base">
+    <h3 class="sc-font-xlarge sc-font-normal sc-font-secondary">{{ content_block.title }}</h3>
+  </div>
+  <div class="SC-UpsellProducts_body sc-bg-white sc-border sc-border-radius">
+    {%- for product in content_block.products %}
+      <div class="SC-UpsellProducts_item sc-flex sc-p-base sc-gap">
+        <div>
+          <a href="{{ product.path }}">
+            <img src="{{ product.image.thumbnail_url }}" data-src="{{ product.image.small_url }}" alt="{{ product.image.alt_text }}" class="sc-lazy-load">
+          </a>
+        </div>
+        <section class="sc-flex sc-flex-wrap sc-gap">
+          <div class="sc-flex sc-justify-space-between sc-gap sc-expand">
+            <a href="{{ product.path }}">
+              <h4 class="sc-font-base sc-font-normal">{{ product.name }}</h4>
+            </a>
+            {%- render "products/card/product_price", product: product %}
+          </div>
+          <div class="sc-flex-col sc-gap sc-ml-auto sc-text-right">
+            {%- render "products/card/add_button", product: product %}
+          </div>
+        </section>
+      </div>
+    {%- endfor %}
+  </div>
+</div>

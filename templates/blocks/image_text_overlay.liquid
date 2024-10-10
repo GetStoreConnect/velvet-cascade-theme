@@ -1,0 +1,56 @@
+{%- liquid 
+    assign type = content_block.sub_type | default: "hero_image"
+    default heading_type: blank
+    default offset_color: blank
+
+    if type == 'hero_image'
+      assign heading_type = 'sc-expanded'
+    endif
+
+    if content_block.image != blank
+      assign offset_color = 'sc-offset-color'
+    endif 
+-%}
+
+<div
+  class="SC-ContentBlock SC-ImageTextOverlay"
+  id="{% if content_block.identifier != blank %}SC-ContentBlock-{{ content_block.identifier }}{% endif %}"
+  data-cb="{{ content_block.identifier }}">
+  <div class="SC-Banner hero{% if type != blank %} {{ type }}{% endif %}{% if offset_color != blank %} sc-offset-color{% endif %}">
+    {% if content_block.image != blank %}
+      <img class="sc-lazy-load" src="{{ content_block.image.large_url }}" data-src="{{ content_block.image.massive_url }}" alt="{{ content_block.image.alt_text }}" loading="lazy">
+    {% endif %}
+    <div class="SC-Banner_container{% if content_block.alignment != blank %} sc-{{ content_block.alignment }}{% endif %}">
+      <div class="SC-Banner_content sc-flex-col sc-gap">
+
+        {%- unless content_block.subtitle == blank %}
+          <div class="sc-font-tiny sc-uppercase">
+            {{ content_block.subtitle }}
+          </div>
+        {%- endunless %}
+
+        {%- unless content_block.title == blank %}
+          <h2 class="SC-Banner_heading{% if heading_type != blank %} {{ heading_type }}{% endif %}">
+            {{ content_block.title }}
+          </h2>
+        {%- endunless %}
+
+        {%- unless content_block.content == blank %}
+          <div class="sc-mt-small sc-mb">
+            {{ content_block.content }}
+          </div>
+        {%- endunless %}
+
+        {%- unless content_block.link_label == blank and content_block.link_target == blank %}
+          <div class="sc-display-inline-block">
+            <a class="sc-button sc-button-cta" href="{{ content_block.link_target }}">
+              {{ content_block.link_label }}
+            </a>
+          </div>
+        {%- endunless %}
+      </div>
+    </div>
+
+    <div class="SC-Banner_overlay"></div>
+  </div>
+</div>

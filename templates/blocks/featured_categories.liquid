@@ -1,0 +1,35 @@
+{%- liquid 
+    assign alignment = content_block.alignment 
+    
+    capture alignment_value 
+      case alignment
+        when "left"
+          assign alignment_value = "sc-align-items-left"
+        when "center"
+          assign alignment_value = "sc-align-items-center"
+        when "right"
+          assign alignment_value = "sc-align-items-end"
+      endcase
+    endcapture
+-%}
+
+<section class="SC-ContentBlock SC-FeaturedCategories sc-expand"
+         id="SC-ContentBlock-{{ content_block.identifier }}">
+
+  {% if content_block.title != blank or content_block.subtitle %}
+  <div class="SC-FeaturedCategories_header sc-mb sc-flex-col {{ alignment_value }}">
+    {% if content_block.title != blank %}
+      <h2 class="sc-mb">{{ content_block.title }}</h2>
+    {% endif %}
+    {% if content_block.subtitle != blank %}
+      <p class="SC-FeaturedCategories_header_subheading sc-font-bold sc-uppercase sc-shade-darkest">{{ content_block.subtitle }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="sc-grid sc-three-to-six-column sc-gap">
+    {%- for product_category in content_block.product_categories %}
+      {%- render "shared/category_card", product_category: product_category %}
+    {%- endfor %}
+  </div>
+</section>

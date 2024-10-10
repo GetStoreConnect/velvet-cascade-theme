@@ -1,0 +1,30 @@
+<div id="{{ content_block.identifier }}" class="SC-Tabs SC-Tabs-overlap sc-mt-large sc-pos-relative" data-tabs="{{ content_block.identifier }}">
+  {%- if content_block.title != blank %}
+    <div class="SC-Tabs_header sc-container sc-pe"> 
+      <h2>{{ content_block.title }}</h2>
+    </div>
+  {%- endif %}
+  <div class="SC-Tabs_body sc-container sc-one-to-two-column">
+      <div class="sc-flex-col sc-gap">
+        {%- if content_block.image != blank %}
+          <div class="SC-Tabs_body_image">
+            <img src="{{ content_block.image.small_url }}" data-src="{{ content_block.image.large_url }}" alt="{{ content_block.image.alt_text }}" class="sc-lazy-load">
+          </div>
+        {%- endif %}
+      </div>
+
+      <div class="sc-flex-col">
+        <div class="SC-Tabs_triggers sc-flex sc-align-item-start sc-wrap-up-to-medium">
+          {%- for child in content_block.children %}
+            <button class="SC-Tab-trigger sc-pos-relative sc-border-none sc-font-tiny {%- if forloop.first %} is-active{%- endif %}" type="button" data-tab-trigger="{{ child.identifier }}" id="{{ child.identifier }}">{{ child.title }}</button>
+          {%- endfor %}
+        </div>
+
+        {%- for child in content_block.children %}
+          <section class="SC-TabPanel_body sc-pe-base {%- if forloop.first %} is-active{% else %} sc-hide{%- endif %}" data-tab="{{ child.identifier }}" id="{{ child.identifier }}">
+            {{ child.render }}
+          </section>
+        {%- endfor %}
+      </div>
+  </div>
+</div>

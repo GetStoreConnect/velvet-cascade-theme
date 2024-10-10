@@ -1,0 +1,70 @@
+{%- liquid 
+    assign alignment = content_block.alignment
+    assign count = content_block.children | size
+
+    capture alignment_value
+      case alignment
+        when "left"
+          assign alignment_value = "sc-align-items-left"
+        when "center"
+          assign alignment_value = "sc-align-items-center"
+        when "right"
+          assign alignment_value = "sc-align-items-end"
+      endcase
+    endcapture
+-%}
+
+
+<section class="SC-FeaturedProducts sc-expand sc-md:me-xlarge sc-pe-large"
+         id="SC-ContentBlock-{{ content_block.identifier }}">
+
+  {% if content_block.title != blank or content_block.subtitle %}
+  <div class="SC-FeaturedProducts_header sc-mb-base sc-ms-auto sc-flex sc-justify-space-between {{ alignment_value }} {% if count <= 4 %}sc-padding-inline{% endif %}">
+    <div class="sc-flex-col sc-gap-tiny">
+    {% if content_block.title != blank %}
+      <h2>{{ content_block.title }}</h2>
+    {% endif %}
+    {% if content_block.subtitle != blank %}
+      <p class="sc-font-large">{{ content_block.subtitle }}</p>
+    {% endif %}
+    </div>
+    {% if count >  4 %}
+    <div class="sc-hide-up-to-medium">
+      <div class="controls sc-flex sc-gap" id="slider-controls" data-controls="{{ content_block.identifier }}" aria-label="Carousel Navigation" tabindex="0">
+        <button class="sc-button-tns left" aria-controls="customize" tabindex="-1" data-controls="prev">
+          {%- render "shared/icons/chevron", fill: "transparent", stroke_color: "#000000" %}
+        </button>
+        <button class="sc-button-tns right" aria-controls="customize" tabindex="-1" data-controls="next">
+          {%- render "shared/icons/chevron", style_class: "sc-rotate-180", fill: "transparent", stroke_color: "#000000" %}  
+        </button>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if count <= 4 %}
+    <div class="SC-FeaturedProducts_grid sc-grid sc-two-to-four-column sc-padding-inline">
+      {%- for child in content_block.children %}
+        {{ child.render }}
+      {%- endfor %}
+    </div>
+  {% elsif count >  4 %}
+      <div class="SC-FeaturedProducts_slider" data-featured-slider="{{ content_block.identifier }}">
+        {%- for child in content_block.children %}
+          <div>
+            {{ child.render }}
+          </div>
+        {%- endfor %}
+      </div>
+  {% endif %}
+
+  {%- if content_block.link_label %}
+    <div class="SC-FeaturedProducts_footer sc-flex sc-justify-center sc-mt-base">
+      <a href="{{ content_block.link_target }}" class="sc-button sc-button_outline">
+        <span>{{ content_block.link_label }}</span>
+      </a>
+    </div>
+  {%- endif %}
+
+</section>
