@@ -1,0 +1,21 @@
+<div class="SC-Review" id="{{ content_block.identifier }}">
+  <div class="sc-flex sc-gap-tiny sc-pt-large">
+    {%- render "shared/icons/five_stars" %}
+  </div>
+  {% comment %} It anchors the product the review is directed to {% endcomment %}
+  {%- if content_block.link_label != blank  and content_block.link_target != blank %}
+    <div class="sc-mt-small">
+      <a class="sc-font-bold sc-font-secondary" href="{{ content_block.link_target }}">{{ content_block.link_label }}</a>
+    </div>
+  {%- endif %}
+  {%- if content_block.content != blank %}
+    <div class="sc-mt-small">
+      <p class="sc-font-bold sc-font-italic sc-font-secondary">{{ content_block.content | strip_html }}</p>
+    </div>
+  {%- endif %}
+  {% if content_block.title != blank %}
+    <div>
+      <h3 class="sc-font-base sc-mt-medium">{{ content_block.title }}</h3>
+    </div>
+  {% endif %}
+</div>

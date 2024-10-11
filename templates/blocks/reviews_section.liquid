@@ -1,27 +1,27 @@
-{% assign alignment = content_block.alignment %}
-
 <section class="sc-section-reviews">
-  <div class="sc-container">
-    <div class="sc-section_header sc-pe{% if alignment == 'center-text' %} sc-text-center{% endif %}">
-      {%- if content_block.title != blank %}
-        <h2 class="sc-section_heading">{{ content_block.title }}</h2>
-      {%- endif %}
-      {%- if content_block.subtitle != blank %}
-        <p class="sc-section_subheading">{{ content_block.subtitle }}</p>
-      {%- endif %}
-      {% comment %} available for custom styling on header {% endcomment %}
-      {%- if content_block.pull_text %}
-        {{ content_block.pull_text }}
-      {%- endif %}
-    </div>
-    <div class="SC-FeaturedProducts_controls">
-      <div class="controls sc-flex sc-gap" id="slider-controls" data-controls="{{ content_block.identifier }}" aria-label="Carousel Navigation" tabindex="0">
-        <button class="sc-button-tns left" aria-controls="customize" tabindex="-1" data-controls="prev">
-          {%- render "shared/icons/chevron", fill: "transparent", stroke_color: "#000000" %}
-        </button>
-        <button class="sc-button-tns right" aria-controls="customize" tabindex="-1" data-controls="next">
-          {%- render "shared/icons/chevron", style_class: "sc-rotate-180", fill: "transparent", stroke_color: "#000000" %}  
-        </button>
+  <div class="sc-mt sc-mb">
+    <div class="sc-section_header sc-flex sc-justify-space-between sc-pe-tiny sc-ps-base sc-md:padding-inline">
+      <header>
+        {%- if content_block.title != blank %}
+          <h2 class="sc-section_heading">{{ content_block.title }}</h2>
+        {%- endif %}
+        {%- if content_block.subtitle != blank %}
+          <p class="sc-section_subheading">{{ content_block.subtitle }}</p>
+        {%- endif %}
+        {% comment %} available for custom styling on header {% endcomment %}
+        {%- if content_block.pull_text %}
+          {{ content_block.pull_text }}
+        {%- endif %}
+      </header>
+      <div class="sc-section_controls">
+        <div class="controls sc-flex sc-gap" id="slider-controls" data-controls="{{ content_block.identifier }}" aria-label="Carousel Navigation" tabindex="0">
+          <button class="sc-button-tns left" aria-controls="customize" tabindex="-1" data-controls="prev">
+            {%- render "shared/icons/chevron", fill: "transparent", stroke_color: "#000000" %}
+          </button>
+          <button class="sc-button-tns right" aria-controls="customize" tabindex="-1" data-controls="next">
+            {%- render "shared/icons/chevron", style_class: "sc-rotate-180", fill: "transparent", stroke_color: "#000000" %}  
+          </button>
+        </div>
       </div>
     </div>
     <div class="sc-flex sc-pe" data-featured-slider="{{ content_block.identifier }}">

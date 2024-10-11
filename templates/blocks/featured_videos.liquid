@@ -46,7 +46,7 @@
   {% if count <= 4 %}
     <div class="SC-FeaturedProducts_grid sc-grid sc-two-to-four-column sc-padding-inline">
       {%- for child in content_block.children %}
-        {{ child.render }}
+        <div>{{ child.render }}</div>
       {%- endfor %}
     </div>
   {% elsif count >  4 %}

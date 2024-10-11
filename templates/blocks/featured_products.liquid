@@ -48,7 +48,7 @@
       {%- endfor %}
     </div>
   {% elsif count >  4 %}
-      <div class="SC-FeaturedProducts_slider" data-featured-slider="{{ content_block.identifier }}">
+      <div class="SC-FeaturedProducts_slider sc-pb" data-featured-slider="{{ content_block.identifier }}">
         {%- for product in content_block.products %}
           <div class="SC-FeaturedProducts_card">
           {%- render "products/card", product: product %}
@@ -57,9 +57,9 @@
       </div>
   {% endif %}
 
-  {%- if content_block.link_label %}
+  {%- if content_block.link_label != blank and content_block.link_target != blank %}
     <div class="SC-FeaturedProducts_footer sc-flex sc-justify-center sc-mt-base">
-      <a href="{{ content_block.link_target }}" class="sc-button sc-button_outline">
+      <a href="{{ content_block.link_target }}" class="sc-font-medium sc-font-bold sc-underline">
         <span>{{ content_block.link_label }}</span>
       </a>
     </div>
