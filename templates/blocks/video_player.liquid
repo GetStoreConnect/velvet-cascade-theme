@@ -1,8 +1,8 @@
 {% assign content = content_block.content | strip_html %}
 {% assign video_link = content | strip | replace: " ", "" %}
 
-{% if content_block.image != blank %}
-  <div class="SC-Video_wrapper">
+{%- if content_block.image != blank %}
+  <div class="SC-VideoWrapper">
     <div class="SC-Video" style="background-image: url('{{ content_block.image.massive_url }}');" data-video-container>
       <div class="SC-Video_icon sc-flex sc-justify-center sc-align-items-center sc-cursor-pointer sc-pl-tiny">
         {%- render "shared/icons/play_button", width: "20px", height: "20px" %}
@@ -10,9 +10,18 @@
     </div>
     <iframe src="https://player.vimeo.com/video/{{ video_link }}?muted=1" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" mozallowfullscreen webkitallowfullscreen allowfullscreen style="display:none;" data-video-iframe></iframe>
     {%- if content_block.title != blank %}
-    <div class="sc-mt-micro">
-      <h3 class="sc-m-none sc-font-small sc-font-normal">{{ content_block.title }}</h3>
-    </div>
+      <div class="sc-mt-micro">
+        <h3 class="sc-m-none sc-font-small sc-font-normal">{{ content_block.title }}</h3>
+      </div>
+    {%- endif %}
   </div>
-  {%- endif %}
-{% endif %}
+{%- else %}
+  <div class="SC-VideoWrapper">
+    <iframe src="https://player.vimeo.com/video/{{ video_link }}?muted=1" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" mozallowfullscreen webkitallowfullscreen allowfullscreen style="display:none;" data-video-iframe></iframe>
+  </div>
+    {%- if content_block.title != blank %}
+      <div class="sc-mt-micro">
+        <h3 class="sc-m-none sc-font-small sc-font-normal">{{ content_block.title }}</h3>
+      </div>
+    {%- endif %}
+{%- endif %}
