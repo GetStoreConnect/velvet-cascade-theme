@@ -1,0 +1,10 @@
+{%- if content_block.title != blank %}
+  <div id="{{ content_block.identifier }}">
+    <div class="sc-flex sc-gap-small sc-align-items-center" id="{{ content_block.identifier }}">
+      {% if content_block.image != blank %}
+        <img src="{{ content_block.image.url }}" loading="lazy" alt="{{ content_block.image.alt_text }}" />
+      {% endif %}
+      <span>{{ content_block.title }}</span>
+    </div>
+  </div>
+{%- endif %}

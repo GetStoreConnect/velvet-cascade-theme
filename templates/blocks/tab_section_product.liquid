@@ -1,0 +1,17 @@
+<div id="{{ content_block.identifier }}" class="SC-Tabs-small sc-pos-relative" data-tabs="{{ content_block.identifier }}">
+  <div class="SC-Tabs_body">
+      <div class="sc-flex-col">
+        <div class="SC-Tabs_triggers sc-flex sc-align-item-start sc-wrap-up-to-medium">
+          {%- for child in content_block.children %}
+            <button class="SC-Tab-trigger sc-pos-relative sc-border-none sc-font-tiny {%- if forloop.first %} is-active{%- endif %}" type="button" data-tab-trigger="{{ child.identifier }}" id="{{ child.identifier }}">{{ child.title }}</button>
+          {%- endfor %}
+        </div>
+
+        {%- for child in content_block.children %}
+          <section class="SC-TabPanel_body sc-pe-base {%- if forloop.first %} is-active{% else %} sc-hide{%- endif %}" data-tab="{{ child.identifier }}" id="{{ child.identifier }}">
+            {{ child.render }}
+          </section>
+        {%- endfor %}
+      </div>
+  </div>
+</div>

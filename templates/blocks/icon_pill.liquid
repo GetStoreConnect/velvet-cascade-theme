@@ -1,0 +1,10 @@
+<div class="sc-pill" id="{{ content_block.identifier }}">
+  <div class="sc-flex sc-align-items-center sc-gap-base sc-bg-white sc-border-radius sc-p-base">
+    {%- if content_block.image != blank %}
+      <img src="{{ content_block.image.url }}" alt="{{ content_block.image.alt_text }}" width="24">
+    {%- else %}
+      {% render 'shared/placeholder_image', width: '24px' %}
+    {%- endif %}
+    <h3 class="sc-pill_title sc-font-base sc-m-none">{{ content_block.title }}</h3>
+  </div>
+</div>

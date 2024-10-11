@@ -1,0 +1,40 @@
+{%- assign type = content_block.sub_type -%}
+
+<section
+  class="SC-ContentBlockContainer{% if type != blank %} {{ type}}{% endif %}"
+  id="{% if content_block.identifier != blank %}SC-ContentBlockContainer-{{ content_block.identifier }}{% endif %}"
+  data-cb="{{ content_block.identifier }}">
+
+  {%- if content_block.title != blank or content_block.subtitle != blank %}
+    <header class="SC-ContentBlockContainer_header{% if type == 'offset' %} {{ type }} sc-pt-large{% endif %}">
+      {%- if content_block.title != blank %}
+        <h2>{{ content_block.title }}</h2>
+      {%- endif %}
+      {%- if content_block.subtitle != blank %}
+        <div class="sc-font-small sc-uppercase sc-shade-darkest">
+          {{ content_block.subtitle }}
+        </div>
+      {%- endif %}
+    </header>
+  {%- endif %}
+
+  <div class="SC-ContentBlockContainer_body{% if content_block.layout_style != blank %} sc-{{ content_block.layout_style }}{% endif %} {%- if type == 'offset' %} {{ type }} sc-pe{% endif %}">
+    {%- for child in content_block.children %}
+      {{ child.render }}
+    {%- endfor %}
+  </div>
+  
+  {%- if content_block != blank %}
+  <div class="SC-ContentBlockContainer_body{%- if type == 'offset' %} {{ type }} sc-pb-large{% endif %}">
+    {{ content_block.content }}
+  </div>
+  {%- endif %}
+
+  {%- if content_block.link_label != blank and content_block.link_target != blank %}
+    <footer class="SC-ContentBlockContainer_footer{% if type == 'offset' %} {{ type }}{% endif %}">
+      <a class="SC-Button SC-Button-primary" href="{{ content_block.link_target }}">
+        {{ content_block.link_label | escape }}
+      </a>
+    </footer>
+  {%- endif %}
+</section>
