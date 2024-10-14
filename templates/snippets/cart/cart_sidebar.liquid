@@ -1,0 +1,69 @@
+{%- comment %} Sidebar {% endcomment %}
+
+<div class="sc-cart_dropdown" data-modal="cart" data-sc-cart>
+
+  {%- if current_cart != blank and current_cart.item_count > 0 %}
+    <div class="sc-cart_header sc-bg-white sc-flex-col sc-gap-base active">
+      <button data-modal-trigger="cart" type="button" class="sc-cart_header_button sc-flex sc-gap-small">
+        {% render "shared/icons/close_expanded", width: "0.8rem" %}
+        <span>{{ "header.menu.close" | t }}</span>
+      </button>
+      <h3 class="sc-cart_heading sc-font-xxlarge sc-m-none">{{ "cart.sidebar.label" | t }} ({{ current_cart.item_count }})</h3>
+    </div>
+  {%- else %}
+    <div class="sc-cart_header empty">
+      <div class="sc-cart_header_section">
+        {%- render "shared/icons/cart", style_class: "sc-cart_icon_bag" %}
+      </div>
+      <div class="sc-p-small">
+        <h3 class="sc-m-none sc-font-base">{{ "cart.empty.top.message" | t }}</h3>
+      </div>
+      <div class="sc-cart_header_section sc-ml-auto">
+        <button data-modal-trigger="cart" type="button" class="sc-cart_header_button sc-flex sc-justify-center sc-align-items-center">
+          {% render "shared/icons/close_expanded", width: "1.1rem" %}
+        </button>
+      </div>
+    </div>
+  {%- endif %}
+  
+  {%- if current_cart != blank and current_cart.item_count > 0 %}
+    {%- comment %} Line items {% endcomment %}
+    <div class="SC-CartProducts sc-cart_products sc-grow sc-overflow-y-auto">
+      {%- render "shared/cart/items", source: current_cart, compact: true, width: "70px" %}
+    </div>
+    {%- comment %} Cart total {% endcomment %}
+    <div class="sc-cart_total sc-p-medium" data-cart-nav-summary>
+      {%- render "shared/order_total", source: current_cart, compact: true %}
+      
+      {%- comment %} View cart button {% endcomment %}
+      {%- render "shared/cart/view_cart_button", class: "sc-cart_button sc-bg-primary sc-expand sc-mt" %}
+    </div>
+  {% else %}
+    {%- assign cart_bg_image = theme_variables['cart.background.image.identifier'] -%}
+    {%- assign bg_image = all_media[cart_bg_image] -%}
+    
+    {% comment %} Background image {% endcomment %}
+    <img src="{{ bg_image.url }}" alt="{{ bg_image.alt_text }}" class="sc-cart_image">
+
+    <div class="sc-cart_empty sc-flex-col sc-gap sc-text-center">
+
+      {% comment %} Empty cart header {% endcomment %}
+      <h4>{{ "empty.cart.message" | t }}</h4>
+
+      {% comment %} Empty cart call to action  {% endcomment %}
+      {%- assign empty_cart_cta_link_default =  theme_variables["empty.cart.cta.link"] %}
+      {%- assign empty_cart_cta_link =  theme_variables["empty.cart.cta.link"] | default: empty_cart_cta_link_default %}
+      {%- assign empty_cart_cta_text_default =  theme_variables["empty.cart.cta.text"] %}
+      {%- assign empty_cart_cta_text =  theme_variables["empty.cart.cta.text"] | default: empty_cart_cta_text_default %}
+
+      <a href="{{ current_store.path }}/{{ empty_cart_cta_link }}" 
+         class="sc-button sc-button-cta sc-justify-space-between sc-align-items-center" 
+         style="display: flex;">
+        <span class="sc-font-bold sc-expand">{{ 'cart.empty.cta.label' | t }}</span> 
+        {%- render "shared/icons/cart", style_class: "sc-cart_icon_bag", width: '22px', height: '22px' %}
+      </a>
+    </div>
+  {%- endif %}
+</div>
+
+<div class="sc-cart_overlay"></div>

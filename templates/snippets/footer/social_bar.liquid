@@ -1,0 +1,42 @@
+{%- liquid
+    assign fb_link = theme_variables['facebook.link'] | default: blank
+    assign ig_link = theme_variables['instagram.link'] | default: blank
+    assign youtube_link = theme_variables['youtube.link'] | default: blank
+    assign pinterest_link = theme_variables['pinterest.link'] | default: blank
+    assign tiktok_link = theme_variables['tiktok.link'] | default: blank
+-%}
+
+<section class="sc-social sc-bg-white sc-shade-dark">
+  <div class="sc-flex sc-justify-space-between sc-align-items-center sc-p-base">
+    <div class="sc-social_title sc-hide-up-to-medium sc-shade-dark">
+      {{ "social.bar.title" | t }}
+    </div>
+    <div class="sc-social_icons sc-one-whole-up-to-medium sc-justify-space-between sc-flex sc-gap-large">
+      {%- unless fb_link == blank %}
+        <a href="{{  fb_link }}" class="sc-social_link sc-icon-facebook" target="_blank">
+          {%- render 'shared/icons/facebook' %}
+        </a>
+      {%- endunless %}
+      {%- unless ig_link == blank %}
+        <a href="{{ ig_link }}" class="sc-social_link sc-icon-instagram" target="_blank">
+          {%- render 'shared/icons/instagram' %}
+        </a>
+      {%- endunless %}
+      {%- unless youtube_link == blank %}
+        <a href="{{ youtube_link }}" class="sc-social_link sc-icon-youtube" target="_blank">
+          {%- render 'shared/icons/youtube' %}
+        </a>
+      {%- endunless %}
+      {%- unless pinterest_link == blank %}
+        <a href="{{ pinterest_link }}" class="sc-social_link sc-icon-pinterest" target="_blank">
+        {%- render 'shared/icons/pinterest' %}
+        </a>
+      {%- endunless %}
+      {%- unless tiktok_link == blank %}
+        <a href="{{ tiktok_link  }}" class="sc-social_link sc-icon-tiktok" target="_blank">
+          {%- render 'shared/icons/tiktok' %}
+        </a>
+      {%- endunless %}
+    </div>
+  </div>
+</section>

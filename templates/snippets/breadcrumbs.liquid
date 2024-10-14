@@ -1,0 +1,36 @@
+{%- if current_breadcrumbs %}
+  <ol class="SC-Breadcrumb sc-mb">
+    {%- for breadcrumb in current_breadcrumbs %}
+      {% if forloop.index == 1 or forloop.index == items.size %}
+        {% continue %}
+      {% endif %}
+      {%- unless forloop.last %}
+        <li class="SC-Breadcrumb_item">
+          <a href="{{ breadcrumb.path }}">{{ breadcrumb.name }}</a>
+        </li>
+      {%- endunless %}
+    {%- endfor %}
+  </ol>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+    {%- for breadcrumb in current_breadcrumbs %}
+      {% if forloop.index == 1 or forloop.index == items.size %}
+        {% continue %}
+      {% endif %}
+      {%- unless forloop.last %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.index | minus: 1 }},
+        "name": "{{ breadcrumb.name }}",
+        "item": "{{ breadcrumb.url }}"
+      }{%- unless forloop.last %},{% endunless %}
+      {% endunless %}
+    {%- endfor %}
+    ]
+  }
+  </script>
+{%- endif %}

@@ -1,0 +1,18 @@
+{%- capture item_count %}
+  {%- if current_cart != blank and current_cart.item_count > 0 %}
+    <div class="SC-Count active sc-ml-tiny" data-cart-nav-count>
+      {{ current_cart.item_count }}
+    </div>
+  {%- else %}
+    <div class="SC-Count sc-ml-tiny" data-cart-nav-count>
+      {{ "0" }}
+    </div>
+  {%- endif %}
+{%- endcapture %}
+
+<li class="SC-Menu_item dropdown sc-cursor-pointer" data-root-nav data-cart-menu data-modal-trigger="cart">
+  <a href="{{ current_store.cart_path }}" class="sc-flex sc-icon-cart sc-p-small sc-bg-white sc-border-rounded sc-pointer-events-none">
+    {%- render "shared/icons/cart" %}
+    {{ item_count }}
+  </a>
+</li>

@@ -1,0 +1,30 @@
+<div class="sc-modal sc-bg-white" data-modal="search">
+  <div class="sc-container">
+    <div class="sc-modal_content sc-pt-xlarge">
+      <div class="sc-modal_header sc-flex sc-align-items-center sc-pos-relative">
+        <div class="sc-modal_action sc-pos-absolute">
+          <button class="sc-modal_close sc-flex sc-justify-center sc-align-items-center sc-gap-small" data-modal-trigger="search" type="button">
+            {%- render "shared/icons/close", style_class: "sc-pointer-events-none", height: 12, width: 12 %}
+            <span>{{ "Close" }}</span>
+          </button>
+        </div>
+        <div class="sc-modal_header sc-grow sc-hide-up-to-medium">
+          <a href="#" class="sc-modal_logo sc-ms-auto">
+            <img src="{{ current_store.logo.url }}" alt="{{ current_store.logo.alt_text }}" loading="lazy">
+          </a>
+        </div>
+      </div>
+      <div class="sc-modal_search sc-ms-auto">
+        <form action="{{ current_store.search_path }}" accept-charset="UTF-8" method="get">
+          <div id="SC-GlobalSearch" class="SC-Field SC-Field-special sc-m-none sc-mw-100">
+            <button type="submit" class="sc-modal_search_button">
+              <span class="sc-hide-up-to-large">{{ "Search" }}</span>            
+              {%- render "shared/icons/search", style_class: 'sc-modal_search_icon' %}
+            </button>
+            <input type="search" name="q" id="q" data-search-input class="SC-Field_input sc-one-whole" autocomplete="off" placeholder="{{ "header.search.placeholder" | t }}">
+          </div> 
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

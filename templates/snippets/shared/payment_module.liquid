@@ -1,0 +1,27 @@
+{%- liquid 
+    assign mastercard = theme_variables['mastercard.payment.status'] | default: "inactive"
+    assign visa = theme_variables['visa.payment.status'] | default: "inactive"
+    assign paypal = theme_variables['paypal.payment.status'] | default: "inactive"
+    assign applepay = theme_variables['applepay.payment.status'] | default: "inactive"
+    assign googlepay = theme_variables['googlepay.payment.status'] | default: "inactive"
+-%}
+
+<div class="sc-payment">
+  <div class="sc-flex sc-gap sc-flex-wrap">
+    {%- if mastercard == 'active' %}
+      {%- render "shared/icons/mastercard" %}
+    {%- endif %}
+    {%- if visa == 'active' %}
+      {%- render "shared/icons/visa" %}
+    {%- endif %}    
+    {%- if paypal == 'active' %}
+      {%- render "shared/icons/paypal" %}
+    {%- endif %}
+    {%- if applepay == 'active' %}
+      {%- render "shared/icons/applepay" %}
+    {%- endif %}
+    {%- if googlepay == 'active' %}
+      {%- render "shared/icons/googlepay" %}
+    {%- endif %}
+  </div>
+</div>

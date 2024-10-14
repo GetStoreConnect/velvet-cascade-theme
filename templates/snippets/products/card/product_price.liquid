@@ -1,0 +1,87 @@
+{%- comment %} Price {% endcomment %}
+<div class="SC-ProductCard_price">
+  {%- if product.restricted? and product.restricted_text != blank %}
+    <span class="SC-ProductCard_price_item">
+      {{ product.restricted_text }}
+    </span>
+  {%- else %}
+    {%- if product.pricing.hide_price? %}
+      <span class="SC-ProductCard_price_item">
+        {{ product.pricing.hide_price_text }}
+      </span>
+    {%- elsif product.pricing.has_price? %}
+
+      {%- comment %} Currency Price {% endcomment %}
+      {%- if current_store.display_currency? and product.pricing.can_purchase_with_currency? %}
+        {%- if product.pricing.on_sale? %}
+          <span class="SC-ProductCard_price_item is-sale">
+            {%- if product.pricing.sale_price == 0 %}
+              {{ "pricing.free" | t }}
+            {%- else %}
+              {%- capture price %}{{ product.pricing.sale_price | money }}{%- endcapture %}
+              {% if product.pricing.variable_pricing? %}
+                {{ "pricing.variable" | t: price: price }}
+              {%- else -%}
+                {{ price }}
+              {%- endif %}
+            {%- endif %}
+          </span>
+          <span class="SC-ProductCard_price_item is-original">
+            {{ product.pricing.original_price | money }}
+          </span>
+        {%- else %}
+          <span class="SC-ProductCard_price_item">
+            {%- if product.pricing.price == 0 %}
+              {{ "pricing.free" | t }}
+            {%- else %}
+              {%- capture price %}{{ product.pricing.price | money }}{%- endcapture %}
+              {% if product.pricing.variable_pricing? %}
+                {{ "pricing.variable" | t: price: price }}
+              {%- else -%}
+                {{ price }}
+              {%- endif %}
+            {%- endif %}
+          </span>
+        {%- endif %}
+      {%- endif -%}
+
+      {%- comment %} Points Price {% endcomment %}
+      {%- if current_store.display_points? and product.pricing.can_purchase_with_points? %}
+
+        {%- comment %} Or {% endcomment %}
+        {%- if current_store.display_currency? and product.pricing.can_purchase_with_currency? %}
+          {{ "pricing.currency_or_points_connector" | t }}
+        {%- elsif product.pricing.variable_pricing? %}
+          {%- comment %} From {% endcomment %}
+          {{ "pricing.points.purchase.variable" | t }}
+        {%- endif %}
+
+        {%- if product.pricing.points_sale? %}
+          <span class="SC-ProductCard_points_price is-sale">
+            {{ product.pricing.sale_purchase_points| points }}
+          </span>
+        {%- endif %}
+        <span class="SC-ProductCard_points_price{% if product.pricing.points_sale? %} is-original{% endif %}">
+          {{ product.pricing.purchase_points | points }}
+        </span>
+      {%- endif %}
+    {%- endif %}
+
+    {%- comment %} Subscriptions {% endcomment %}
+    {%- if product.subscription? %}
+      {%- capture timespan %}
+        {%- liquid
+          assign term = product.pricing.subscription_term | number, compact: true
+          assign unit = product.pricing.subscription_term_unit
+
+          if term != blank and unit != blank
+            render "shared/subscriptions/term_unit", unit: unit, number: term
+          endif
+        %}
+      {%- endcapture %}
+      <span class="SC-ProductCard_subscription">
+        {{ "pricing.subscription_timespan" | t: timespan: timespan }}
+      </span>
+    {%- endif %}
+  {%- endif %}
+</div>

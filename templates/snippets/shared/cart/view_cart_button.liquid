@@ -1,0 +1,6 @@
+{%- default class: blank -%}
+
+<a href="{{ current_store.cart_path }}"
+   data-sc-checkout-btn class="sc-cursor-pointer {{ class }}">
+  <span>{{ "sc.view.cart.button" | t }}</span> {% render "shared/icons/cart", width: '14px' %}
+</a>

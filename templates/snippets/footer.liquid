@@ -1,0 +1,33 @@
+{%- if current_store.footer != blank %}
+  {{ current_store.footer.render }}
+{%- else %}
+  {%- unless current_request.path contains '/cart' %}
+  <footer class="SC-Footer sc-p-none sc-mt-base sc-padding-inline" id="SC-Footer" data-path="{{ current_request.path }}">
+    <div class="sc-border-top sc-pt-large sc-pos-relative">
+      <img src="{{ current_store.logo.url }}" class="SC-Logo_image">
+    </div>
+    {%- render "footer/prefooter_banners" %}
+    {%- render "footer/social_bar" %}
+    <div>
+      {%- if current_store.footer_menu != blank %}
+        {{ current_store.footer_menu.render }}
+      {%- endif %}
+    </div>
+    <div class="sc-flex sc-align-items-center sc-justify-space-between sc-gap sc-flex-wrap" style="color: currentColor; opacity: 0.8;">
+      <div>
+        {{ "Copyright"}} &copy; {{ "2009 -"}} {{ current_store.timezone | now | date: "%Y" }} {{ current_store.name | default: "StoreConnect" }}{{ ". All rights reserved." }}
+      </div>
+      <div class="sc-flex sc-gap sc-justify-center sc-flex-wrap">
+        <a href="#">{{ "Cookies settings" }}</a>
+        {%- if current_privacy.accepted? %}
+          <a class="sc-show-privacy-settings">{{ "privacy.manage_settings" | t }}</a>
+        {%- endif %}
+        <a href="{{ theme_variables['footer.terms.and.conditions.link'] }}">{{ "terms.and.conditions.label" | t }}</a>
+      </div>
+    </div>
+    <div class="sc-flex sc-justify-center sc-pb">
+      {%- render 'shared/payment_module' %}
+    </div>
+  </footer>
+  {%- endunless %}
+{%- endif %}

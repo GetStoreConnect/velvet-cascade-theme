@@ -1,0 +1,27 @@
+<div data-flash-container>
+  {%- if current_flash.notice != blank %}
+    <div class="sc-container">
+      <div class="SC-Notice sc-flash" data-notice data-toggle-visibility-target="flash" data-notice>
+        <div class="sc-mb">
+          <button type="button" data-toggle-visibility="flash" class="sc-font-tiny sc-shade-dark sc-flex sc-gap-tiny">{% render "shared/icons/close", width: '12px' %} <span>Close</span></button>
+        </div>
+        <div>
+          {{ current_flash.notice }}
+        </div>
+      </div>
+    </div>
+  {%- endif %}
+
+  {%- if current_flash.alert != blank %}
+    <div class="sc-container">
+      <div class="SC-Notice SC-Notice-alert sc-flash" data-toggle-visibility-target="flash" data-alert>
+        <div>
+          <button type="button" data-toggle-visibility="flash" class="sc-font-tiny sc-shade-dark sc-flex sc-gap-tiny">{% render "shared/icons/close", width: '12px' %} Close</button>
+        </div>
+        <div>
+          {{ current_flash.alert }}
+        </div>
+      </div>
+    </div>
+  {%- endif %}
+</div>
