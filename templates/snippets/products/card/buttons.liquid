@@ -1,0 +1,28 @@
+{%- form "add-to-cart", product_id: product.id, class: "SC-ProductCard_action", data-cart-form: "" %}
+  <input type="hidden" name="after" value="cart">
+  <input type="hidden" name="quantity" value="1">
+  {%- if product.can_add_to_cart? %}
+    {%- if product.bookable? %}
+      <a href="{{ product.path }}" class="sc-button sc-button-card" data-js-buy-now="true">
+        {{ "shared.product_buttons.check_availability" | t }}
+        {%- render "shared/icons/cart" %}
+      </a>
+    {%- elsif product.bundle_lead? %}
+      <a href="{{ product.path }}" class="sc-button sc-button-card" data-js-buy-now="true">
+        {{ "shared.product_buttons.configure_bundle" | t }}
+        {%- render "shared/icons/cart" %}
+      </a>
+    {%- elsif product.variants.size > 0 %}
+      <a href="{{ product.path }}" class="sc-button sc-button-card" data-js-buy-now="true">
+        {{ "shared.product_buttons.select_option" | t }}
+        {%- render "shared/icons/cart" %}
+      </a>
+    {%- elsif product.can_purchase? == false %}
+      <input type="submit" value="{{ "shared.product_buttons.add_to_cart" | t }}" class="sc-button sc-button-card sc-cursor-pointer" data-js-buy-now="true">
+    {%- else %}
+      <input type="submit" value="{{ product.buy_it_now_text }}" class="sc-button sc-button-card sc-cursor-pointer" data-js-buy-now="true">
+    {%- endif %}
+  {%- else %}
+    <a href="{{ product.path }}" class="sc-button sc-button-card">{{ "See Product" }} {% render "shared/icon/bag", width: '14px' %}</a>
+  {%- endif %}
+{%- endform %}

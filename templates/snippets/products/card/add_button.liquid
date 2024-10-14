@@ -1,0 +1,9 @@
+{%- form "add-to-cart", product_id: product.id, class: "SC-ProductCard_action", data-cart-form: "" %}
+  <input type="hidden" name="after" value="">
+  <input type="hidden" name="quantity" value="1">
+  {%- if product.can_purchase? %}
+    <button type="submit" class="SC-Button SC-Button-add sc-expand sc-font-small" data-js-buy-now="true">{{ "Add to Cart "}} {%- render "shared/icons/cart", width: 16, style_class: "sc-ml-micro" %}</button>
+  {%- else %}
+    <a href="{{ product.path }}" class="SC-Button SC-Button-primary">{{ "See Product" }}</a>
+  {%- endif %}
+{%- endform %}

@@ -1,0 +1,38 @@
+{%- default product: blank %}
+{% assign count = product.related_products | size %}
+
+<section class="SC-FeaturedProducts sc-expand sc-md:me-xlarge sc-pe-large" id="related-products">
+  <div class="SC-FeaturedProducts_header sc-mb-base sc-ms-auto sc-flex sc-justify-space-between">
+    <div class="sc-flex-col sc-gap-tiny">
+      <h2>{{ "products.related_products.title" | t }}</h2>
+    </div>
+    {% if count >  4 %}
+    <div class="sc-hide-up-to-medium">
+      <div class="controls sc-flex sc-gap" id="slider-controls" data-controls="{{ product.identifier }}" aria-label="Carousel Navigation" tabindex="0">
+        <button class="sc-button-tns left" aria-controls="customize" tabindex="-1" data-controls="prev">
+          {%- render "shared/icons/chevron", fill: "transparent", stroke_color: "#000000" %}
+        </button>
+        <button class="sc-button-tns right" aria-controls="customize" tabindex="-1" data-controls="next">
+          {%- render "shared/icons/chevron", style_class: "sc-rotate-180", fill: "transparent", stroke_color: "#000000" %}  
+        </button>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if count <= 4 %}
+    <div class="SC-FeaturedProducts_grid sc-grid sc-two-to-four-column sc-padding-inline">
+      {%- for product in product.related_products %}
+        {%- render "products/card", product: product %}
+      {%- endfor %}
+    </div>
+  {% elsif count >  4 %}
+      <div class="SC-FeaturedProducts_slider" data-featured-slider="{{ product.identifier }}">
+        {%- for product in product.related_products %}
+          <div class="SC-FeaturedProducts_card">
+          {%- render "products/card", product: product %}
+          </div>
+        {%- endfor %}
+      </div>
+  {% endif %}
+</section>

@@ -1,0 +1,37 @@
+{%- liquid 
+    assign store_code = current_store.code | default: blank
+    assign newsletter_cb_id = theme_variables["newsletter.cb.id"] | default: blank
+    assign store_help_center_target = theme_variables["store.help.center.target"] | default:blank 
+-%}
+
+<div class="sc-one-to-two-column" data-component="prefooter" data="{{ store_code }}">
+  <div class="sc-block">
+    <h2 class="sc-block_title">{{ "banner.newsletter.title" | t }}</h2>
+    <p class="sc-block_description">
+      {{ "banner.newsletter.description" | t }}
+    </p>
+    <div class="sc-block_footer">
+      {%- if newsletter_cb_id != blank %}
+        {{ all_content_blocks[newsletter_cb_id].render }}
+      {%- else %}
+      {%# fallback content %}
+      <input type="email" class="sc-block_input" placeholder="Email" />
+      <button type="button" class="sc-block_input_button">
+        {%- render "shared/icons/rounded_arrow" %}
+      </button>
+      {%- endif %}
+    </div>
+  </div>
+  <div class="sc-block">
+    <h2 class="sc-block_title">{{ "banner.contact.title" | t}}</h2>
+    <p class="sc-block_description">
+      {{ "banner.contact.description" | t }}
+    </p>
+    <div class="sc-block_footer">
+      <a href="{{ store_help_center_target }}" class="sc-block_button">
+        {%- render "shared/icons/message" %}
+          {{ "banner.contact.cta.label" | t }}
+      </a>
+    </div>
+  </div>
+</div>

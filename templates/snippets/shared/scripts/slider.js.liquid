@@ -1,0 +1,65 @@
+{%- unless current_location or current_location_group %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Sliders
+  const featuredSlider = (function () {
+    const viewportWidth = window.innerWidth;
+    let paddingInlineValue = 6.5 / 2;
+    let paddingInlinePixels = (paddingInlineValue / 100) * viewportWidth;
+    console.log(paddingInlinePixels);
+
+    const CUSTOM_PARAMS =  {
+      edgePadding: 10,
+      gutter: 10,
+      nav: false,
+      loop: false,
+      items: 1,
+      mouseDrag: true,
+      responsive: {
+        768: { items: 3, edgePadding: paddingInlinePixels, gutter: 20 },
+        992: { items: 4, mouseDrag: false }
+      },
+      swipeAngle: false,
+      speed: 500
+    }
+
+    let customSliders = [];
+    // Check if the page has Custom Carousels before initializing them
+    document.querySelectorAll('[data-featured-slider]').forEach(slider => {
+      const identifier = slider.getAttribute('data-featured-slider');
+      // Check if there's a corresponding controls element for this slider
+      const hasControls = document.querySelector(`[data-controls="${identifier}"]`) !== null;
+
+      let sliderParams = { ...CUSTOM_PARAMS, container: slider };
+
+      if (hasControls) {
+        const controlsSelector = `[data-controls="${identifier}"]`;
+        sliderParams.controlsContainer = controlsSelector;
+      }
+
+      const tnsSlider = tns(sliderParams);
+      customSliders.push(tnsSlider);
+    });
+
+    return {
+      init: (selector, params) => {
+        const container = {
+          container: selector,
+        };
+
+        const slider = tns({ ...CUSTOM_PARAMS, ...params, ...container });
+        customSliders.push(slider);
+      }
+    }
+
+  })();
+});
+</script>
+<style>
+  @media screen and (min-width: 768px) {
+    .tns-ovh {
+      overflow: visible;
+    }
+  }
+</style>
+{%- endunless %}
