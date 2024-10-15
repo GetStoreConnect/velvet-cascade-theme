@@ -16,7 +16,7 @@
   class="SC-ContentBlock SC-ImageTextOverlay"
   id="{% if content_block.identifier != blank %}SC-ContentBlock-{{ content_block.identifier }}{% endif %}"
   data-cb="{{ content_block.identifier }}">
-  <div class="SC-Banner hero{% if type != blank %} {{ type }}{% endif %}{% if offset_color != blank %} sc-offset-color{% endif %}">
+  <div class="SC-Banner{% if type != blank %} {{ type }}{% endif %}{% if offset_color != blank %} sc-offset-color{% endif %}">
     {% if content_block.image != blank %}
       <img class="sc-lazy-load" src="{{ content_block.image.large_url }}" data-src="{{ content_block.image.massive_url }}" alt="{{ content_block.image.alt_text }}" loading="lazy">
     {% endif %}
