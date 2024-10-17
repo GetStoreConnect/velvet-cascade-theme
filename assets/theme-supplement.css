@@ -857,7 +857,6 @@ h2 {
   height: 100%;
   overflow: auto;
   opacity: 0;
-  /* search */
 }
 .sc-modal.is-active {
   opacity: 1;
