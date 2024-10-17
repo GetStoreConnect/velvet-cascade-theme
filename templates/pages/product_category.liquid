@@ -1,0 +1,70 @@
+<div class="sc-container sc-me">
+  {%- render "breadcrumbs" %}
+
+  <div class="SC-ProductCategory_heading">
+    <h1>{{ current_product_category.name }}</h1>
+    {%- if current_product_category.subtitle %}
+      <p id="SC-CategorySubtitle">
+        {{ current_product_category.subtitle }}
+      </p>
+    {%- endif %}
+  </div>
+
+  <div class="sc-flex-col sc-gap sc-mb">
+    <div>
+    {% render "header/search" %}
+    </div>
+    <div>
+    {%- render "search/filters/sort_dropdown", style_class: "sc-expanded" %}
+    </div>
+  </div>
+
+  <div class="SC-Grid" data="{{ current_product_category.products.size }}">
+    {%- if current_product_category.products.size > 0 or current_product_category.children.size > 0 %}
+      <div class="SC-Grid_sidebar SC-Grid_sidebar_spacious" data-product-sidebar>
+        <div class="SC-Grid_sidebar_body sc-bg-white">
+          <div class="sc-hide-up-to-medium sc-mb">
+            <h3 class="sc-font-xxlarge sc-font-normal sc-font-secondary">{{ "Filter" }}</h3>
+          </div>
+          {%- if current_product_category.navigation_children.size > 0 %}
+            <div class="SC-CategorySubcategories sc-mb">
+              <nav class="SC-PageNav">
+                {%- for subcategory in current_product_category.navigation_children %}
+                  <a href="{{ subcategory.path }}" class="SC-PageNav_link">
+                    {{ subcategory.name }}
+                  </a>
+                {%- endfor %}
+              </nav>
+            </div>
+          {%- endif %}
+
+          {%- render "search/filters" %}
+        </div>
+      </div>
+    {%- endif %}
+
+    <div class="SC-Grid_main" data-product-grid>
+      {%- if current_product_category.products.size > 0 or current_product_category.children.size > 0 %}
+        <menu class="SC-Menu sc-justify-space-between sc-mb-small">
+          {%- render "search/filters/filters_button" %}
+        </menu>
+      {%- endif %}
+
+      {%- if current_product_category.introduction_content %}
+        <div class="SC-ProductCategoryIntroduction sc-rich-text">
+          {{ current_product_category.introduction_content }}
+        </div>
+      {%- endif %}
+
+      <div class="sc-mb">
+        {%- render "products/wrapper", allow_comparisons: true %}
+      </div>
+
+      {%- if current_product_category.information_content %}
+        <div class="SC-ProductCategoryInformation sc-rich-text">
+          {{ current_product_category.information_content }}
+      </div>
+      {%- endif %}
+    </div>
+  </div>
+</div>

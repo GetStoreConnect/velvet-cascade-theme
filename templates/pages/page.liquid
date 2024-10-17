@@ -1,0 +1,6 @@
+<article id="SC-page-{{ current_page.identifier }}">
+  {%- render "shared/page_header", heading: current_page.title, sub_heading: current_page.subtitle, modifier: "sc-container sc-mb" %}
+  <section class="sc-padding-inline">
+    {{ current_page.body_content }}
+  </section
+</article>
