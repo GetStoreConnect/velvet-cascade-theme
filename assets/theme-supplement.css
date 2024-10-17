@@ -428,7 +428,7 @@ h2 {
 }
 .sc-cart_empty h4 {
   font-family: var(--sc-font-secondary);
-  font-size: 1.5rem;
+  font-size: var(--sc-font-xlarge);
 }
 .sc-cart_overlay {
   content: "";
