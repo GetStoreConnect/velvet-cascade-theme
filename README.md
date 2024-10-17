@@ -1,5 +1,8 @@
 # Björn Theme
 
+![FA535796-6AAF-4DD5-A581-5F179BA0C45C_1_201_a](https://github.com/user-attachments/assets/1dea9586-a77c-4236-8925-f154954f0c3d)
+
+
 Björn theme - Multi-concept theme ideal for child and babies retail stores, boutiques, and clothing industries.
 
 **Key features:** Innovative layouts and elements, expandable search bar, slide-out cart sidebar, color swatches for product with variants and sliders. 
