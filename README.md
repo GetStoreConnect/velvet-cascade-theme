@@ -41,7 +41,7 @@ The following templates will override the out-of-the-box theme templates.
 
 This is the white section at the top of your header and it features a small slideshow on the left for short content, with two customizable links on the right.
 
-If this component is not needed, you can easily deactivate it by setting the `active.top.header` theme variable to `inactive`, `off`, or any other string.
+If this component is not needed, you can easily deactivate it by setting the `active.top.header` theme variable to `inactive`, `off`, or any string other than `active`.
 
 **Top header slider**
 
@@ -66,7 +66,7 @@ To get familiar with this feature follow these steps:
 
 1. Create a page
 2. Copy the path
-3. Go to the theme variables and find the `top.slides.cb.identifier` variable
+3. Go to the theme variables and find the `header.customer.service.link` variable
 4. Use the path as the variable value
 
 **Second header tier**
