@@ -1,6 +1,6 @@
 # Velvet Cascade Theme
 
-![FA535796-6AAF-4DD5-A581-5F179BA0C45C_1_201_a](https://github.com/user-attachments/assets/1dea9586-a77c-4236-8925-f154954f0c3d)
+![velvet-cascade-theme](https://github.com/user-attachments/assets/7a49772c-63ad-42c2-bedb-4d7a465c0406)
 
 Velvet Cascade theme - Multi-concept theme ideal for child and babies retail stores, boutiques, and clothing industries.
 
