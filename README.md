@@ -35,4 +35,42 @@ The following templates will override the out-of-the-box theme templates.
 - featured products
 - image_text_overlay
 
-**Compatible with StoreConnect v16.0.0 and on**
+### Setting up the Header
+
+**Top header**
+
+This is the white section at the top of your header and it features a small slideshow on the left for short content, with two customizable links on the right.
+
+If this component is not needed, you can easily deactivate it by setting the `active.top.header` theme variable to `inactive`, `off`, or any string other than `active`.
+
+**Top header slider**
+
+Follow these steps:
+
+1. Create a content block and use the [“No added styling"](https://help.getstoreconnect.com/documentation/content-block-templates.html#no-added-styling-block) - it will work as the slider container.
+2. Copy the content block identifier
+3. Go to the theme variables and find the `top.slides.cb.identifier` variable
+4. Paste the content block identifier in the value field
+5. To create each slide, create a new content block and use the “Top slide” template - it supports the title and image field, we highly recommend using an icon or a small image.
+6. Relate each slide to the parent content block created on step #1
+
+**Login**
+
+When customers are logged in, it automatically switches to display the Account option along with a dropdown menu.
+
+**Help Centre**
+
+By default, the theme sets the help centre label and placeholder link. You can relate this link to anything you want, an article, customer support, product category, you name it.
+
+To get familiar with this feature follow these steps:
+
+1. Create a page
+2. Copy the path
+3. Go to the theme variables and find the `header.customer.service.link` variable
+4. Use the path as the variable value
+
+**Second header tier**
+
+"The second tier includes two automated components: a search icon that triggers a search modal and a cart icon that opens the cart sidebar.
+
+To populate the header menu, you need to create a new menu using the [menu builder](https://help.getstoreconnect.com/documentation/menu-builder.html) and link it to the store."
