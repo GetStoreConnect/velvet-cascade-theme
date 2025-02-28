@@ -4,8 +4,6 @@
 
 Velvet Cascade theme - Multi-concept theme ideal for child and babies retail stores, boutiques, and clothing industries.
 
-Preview theme: [Beauty Store](https://d-themedeve-00dqe000000r6kt2as-7bdccde07574.herokuapp.com/beauty)
-
 **Key features:** Innovative layouts and elements, expandable search bar, slide-out cart sidebar, color swatches for product with variants and sliders. 
 
 ## Setting up your theme
@@ -71,6 +69,6 @@ To get familiar with this feature follow these steps:
 
 **Second header tier**
 
-"The second tier includes two automated components: a search icon that triggers a search modal and a cart icon that opens the cart sidebar.
+The second tier includes two automated components: a search icon that triggers a search modal and a cart icon that opens the cart sidebar.
 
-To populate the header menu, you need to create a new menu using the [menu builder](https://help.getstoreconnect.com/documentation/menu-builder.html) and link it to the store."
+To populate the header menu, you need to create a new menu using the <a href="https://help.getstoreconnect.com/documentation/menu-builder.html" target="_blank" rel="noopener noreferrer">menu builder</a> and link it to the store.
