@@ -14,13 +14,6 @@
         <div class="SC-ProductDisplay_details sc-flex-col sc-gap-small" id="SC-ProductDisplayDetails">
           <header class="SC-ProductDisplay_header">
             <div class="SC-ProductDisplay_header_inner sc-flex-col sc-bg-white" style="padding: 1.5rem">
-              {%# Brand %}
-              {% comment %}
-              {%- if current_product.brand %}
-                <div>{{ current_product.brand.name }}</div>
-              {%- endif %}
-              {% endcomment %}
-
               {%# Name %}
               <div class="SC-ProductDisplay_header_heading sc-text-center sc-pt">
                 <h1>{{ current_product.name }}</h1>
@@ -89,6 +82,9 @@
 
             {%# Bundle configuration %}
             {%- if is_bundle %}
+              {%- require "scripts/bundle.js" -%}
+              {%- require "scripts/quantity-picker.js" -%}
+
               {%# Price %}
               {% if current_product.pricing.has_price? %}
                 <div data-bundle-price></div>

@@ -1,5 +1,4 @@
 {%- comment %} Sidebar {% endcomment %}
-
 <div class="sc-cart_dropdown" data-modal="cart" data-sc-cart>
 
   {%- if current_cart != blank and current_cart.item_count > 0 %}
@@ -25,7 +24,7 @@
       </div>
     </div>
   {%- endif %}
-  
+
   {%- if current_cart != blank and current_cart.item_count > 0 %}
     {%- comment %} Line items {% endcomment %}
     <div class="SC-CartProducts sc-cart_products sc-grow sc-overflow-y-auto">
@@ -34,14 +33,14 @@
     {%- comment %} Cart total {% endcomment %}
     <div class="sc-cart_total sc-p-medium" data-cart-nav-summary>
       {%- render "shared/order_total", source: current_cart, compact: true %}
-      
+
       {%- comment %} View cart button {% endcomment %}
       {%- render "shared/cart/view_cart_button", class: "sc-cart_button sc-bg-primary sc-expand sc-mt" %}
     </div>
   {% else %}
     {%- assign cart_bg_image = theme_variables['cart.background.image.identifier'] -%}
     {%- assign bg_image = all_media[cart_bg_image] -%}
-    
+
     {% comment %} Background image {% endcomment %}
     <img src="{{ bg_image.url }}" alt="{{ bg_image.alt_text }}" class="sc-cart_image">
 
@@ -56,10 +55,10 @@
       {%- assign empty_cart_cta_text_default =  theme_variables["empty.cart.cta.text"] %}
       {%- assign empty_cart_cta_text =  theme_variables["empty.cart.cta.text"] | default: empty_cart_cta_text_default %}
 
-      <a href="{{ current_store.path }}/{{ empty_cart_cta_link }}" 
-         class="sc-button sc-button-cta sc-justify-space-between sc-align-items-center" 
-         style="display: flex;">
-        <span class="sc-font-bold sc-expand">{{ 'cart.empty.cta.label' | t }}</span> 
+      <a href="{{ current_store.path }}/{{ empty_cart_cta_link }}"
+        class="sc-button sc-button-cta sc-justify-space-between sc-align-items-center"
+        style="display: flex;">
+        <span class="sc-font-bold sc-expand">{{ 'cart.empty.cta.label' | t }}</span>
         {%- render "shared/icons/cart", style_class: "sc-cart_icon_bag", width: '22px', height: '22px' %}
       </a>
     </div>

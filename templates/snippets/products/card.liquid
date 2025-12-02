@@ -2,7 +2,7 @@
 {%- default allow_comparisons: false -%}
 {%- default category_page: false %}
 
-<div class="SC-CarouselItem"> 
+<div class="SC-CarouselItem">
   <div class="SC-ProductCard{% if category_page == true %} sc-bg-white{% endif %}" id="product_{{ product.id }}">
     {%- comment -%} Image {%- endcomment -%}
     <div class="SC-ProductCard_image_wrapper">
@@ -33,7 +33,7 @@
       <div class="{% if category_page == true %}sc-flex-col{% else %}sc-flex{% endif %} sc-justify-space-between sc-gap">
         {%- comment %} Product Name {%- endcomment %}
         <h3 class="{% if category_page == true %}sc-font-tiny{% else %}sc-font-base{% endif %} sc-font-bold sc-shade-darkest">{{ product.name }}</h3>
-        
+
         {%- comment %} Price {% endcomment %}
         <div class="SC-ProductCard_price">
         {%- if product.restricted? and product.restricted_text != blank %}
