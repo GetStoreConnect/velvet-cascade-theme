@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', ()=> {
   // Lazy Loading
   const images = document.querySelectorAll('img[data-src]');
-  
+
   const loadImage = function(entries, observer) {
     entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
       observer.unobserve(entry.target);
     });
     });
-  }      
+  }
   const imageObserver = new IntersectionObserver(loadImage, {
     root: null,
     threshold: 0
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     speed: 600,
     autoplayTimeout: 4000
   });
-  
+
   document.querySelectorAll('.SC-Video_icon').forEach(function(playIcon) {
     var container = playIcon.closest('.SC-Video_wrapper').querySelector('[data-video-container]');
     var iframe = playIcon.closest('.SC-Video_wrapper').querySelector('[data-video-iframe]');

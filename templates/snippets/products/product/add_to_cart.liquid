@@ -1,4 +1,4 @@
-{%- default product: blank %}
+{%- default product: nil %}
 
 {%- if product.pricing.has_price? %}
   {%- form "add-to-cart", product_id: product.id, data-cart-form: true %}

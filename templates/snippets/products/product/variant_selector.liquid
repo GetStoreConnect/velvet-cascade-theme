@@ -3,6 +3,8 @@
 
 {% if product %}
   {% if product.variant_types.size > 0 %}
+    {%- require "scripts/product-variants.js" -%}
+
     {% render "products/product/variant.json", product: product %}
     {%- if product.variant? and product.variant_choices.size > 0 %}
       {% assign choices = product.variant_choices | pluck: "form_value" %}
@@ -80,13 +82,6 @@
           <button class="SC-Button SC-Button-subtle SC-Button-small sc-me-medium is-hidden" type="button" data-variant-reset-button>
             {{ "products.variant_options.reset_choices" | t }}
           </button>
-        {%- endif %}
-        {%- if product.master? %}
-        {% comment %}
-          <div class="SC-Notice sc-mb" data-variant-selection-prompt>
-            {{ "products.show.select_option" | t }}
-          </div>
-        {% endcomment %}
         {%- endif %}
       </div>
     </section>

@@ -1,7 +1,7 @@
-{%- liquid 
+{%- liquid
     assign store_code = current_store.code | default: blank
     assign newsletter_cb_id = theme_variables["newsletter.cb.id"] | default: blank
-    assign store_help_center_target = theme_variables["store.help.center.target"] | default:blank 
+    assign store_help_center_target = theme_variables["store.help.center.target"] | default:blank
 -%}
 
 <div class="sc-one-to-two-column" data-component="prefooter" data="{{ store_code }}">
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="sc-block">
-    <h2 class="sc-block_title">{{ "banner.contact.title" | t}}</h2>
+    <h2 class="sc-block_title">{{ "banner.contact.title" | t }}</h2>
     <p class="sc-block_description">
       {{ "banner.contact.description" | t }}
     </p>
