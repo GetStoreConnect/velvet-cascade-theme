@@ -12,7 +12,7 @@
     </p>
     <div class="sc-block_footer">
       {%- if newsletter_cb_id != blank %}
-        {{ all_content_blocks['newsletter_cb_id'].render }}
+        {{ all_content_blocks[newsletter_cb_id].render }}
       {%- else %}
       {%# fallback content %}
       <input type="email" class="sc-block_input" placeholder="Email" />
