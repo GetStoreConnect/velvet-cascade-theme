@@ -6,20 +6,20 @@
 {%- if source != blank %}
   {% capture source_type %}{{ source | downcase }}{% endcapture %}
   <div class="SC-OrderTotal SC-OrderTotal-{{ source }}">
-    {%- comment %} Adjustment line items {% endcomment %}
-    {%- for line_item in source.adjustment_items %}
+    {%- comment %} Adjustment cart items {% endcomment %}
+    {%- for cart_item in source.adjustment_items %}
       <div class="SC-OrderTotal_line SC-AdjustmentItem">
         <div class="SC-OrderTotal_line_label">
-          {{ line_item.name }}
+          {{ cart_item.name }}
         </div>
-        <div class="SC-OrderTotal_line_total" data-line-item-pricing="{{ line_item.id }}">
-          {%- render "shared/line_items/pricing", pricing: line_item.pricing, compact: compact %}
+        <div class="SC-OrderTotal_line_total" data-line-item-pricing="{{ cart_item.id }}">
+          {%- render "shared/cart_items/pricing", pricing: cart_item.pricing, compact: compact %}
         </div>
       </div>
     {%- endfor %}
 
     {%- unless source.quotable? %}
-      {%- comment %} Surcharge line items {% endcomment %}
+      {%- comment %} Surcharge cart items {% endcomment %}
       {%- if source_type == "order" %}
         {%- for surcharge in source.surcharge_items %}
           <div class="SC-OrderTotal_line">
