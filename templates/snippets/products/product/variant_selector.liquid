@@ -8,6 +8,7 @@
       {% assign choices = product.variant_choices | pluck: "form_value" %}
     {%- endif %}
     <section id="SC-VariantSelector" class="sc-mb sc-flex-col sc-gap-small sc-align-items-start sc-border-bottom-lightest" data-variant-option-selector>
+      {% for variant_type in product.variant_types %}
         {%- capture field_name %}{{ variant_type.form_value }}{% endcapture %}
         <div data-variant-type="{{ variant_type.form_value }}">
           {%- if variant_type.variant_choices.size > theme_variables["product.variants.selector.buttons.maximum"] %}
