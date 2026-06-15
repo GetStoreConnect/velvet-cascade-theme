@@ -7,7 +7,7 @@
         {{ "shared.product_buttons.check_availability" | t }}
         {%- render "shared/icons/cart" %}
       </a>
-    {%- elsif product.bundle_lead? %}
+    {%- elsif product.is_bundle? %}
       <a href="{{ product.path }}" class="sc-button sc-button-card" data-js-buy-now="true">
         {{ "shared.product_buttons.configure_bundle" | t }}
         {%- render "shared/icons/cart" %}
