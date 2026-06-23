@@ -1,5 +1,6 @@
 <div data-remote-target="product">
-  {%- assign is_bundle = current_product.bundle_lead? %}
+  {%- assign is_cpq_bundle = current_product.bundle_lead? %}
+  {%- assign is_bundle = current_product.is_bundle? %}
 
   <div>
     <div class="sc-container sc-me" id="SC-product-{{ current_product.slug }}">
@@ -82,21 +83,44 @@
 
             {%# Bundle configuration %}
             {%- if is_bundle %}
-              {%- require "scripts/bundle.js" -%}
-              {%- require "scripts/quantity-picker.js" -%}
+              {%- if is_cpq_bundle %}
+                {%- require "scripts/bundle.js" -%}
+                {%- require "scripts/quantity-picker.js" -%}
 
-              {%# Price %}
-              {% if current_product.pricing.has_price? %}
-                <div data-bundle-price></div>
-              {% endif %}
+                {%# Price %}
+                {% if current_product.pricing.has_price? %}
+                  <div data-bundle-price></div>
+                {% endif %}
 
-              {%# Product options %}
-              <section id="SC-BundleProducts" class="sc-pos-relative" style="min-height: 300px">
-                <div data-bundle="{{ current_product.id }}" class="sc-flex-col sc-gap">
-                  {%- render "shared/loader", active: true %}
-                  {{ "products.show.loading_bundles" | t }}
+                {%# Product options %}
+                <section id="SC-BundleProducts" class="sc-pos-relative" style="min-height: 300px">
+                  <div data-bundle="{{ current_product.id }}" class="sc-flex-col sc-gap">
+                    {%- render "shared/loader", active: true %}
+                    {{ "products.show.loading_bundles" | t }}
+                  </div>
+                </section>
+                {%- else %}
+                {%- comment -%} Bundle V2 Implementation {%- endcomment -%}
+                {%- require "scripts/bundle-v2.js" -%}
+                {%- require "scripts/quantity-picker.js" -%}
+
+                {%- comment -%} Detect edit mode from URL parameters {%- endcomment -%}
+                {%- assign bundle_identifier_param = current_request.params.bundle_identifier -%}
+                {%- assign bundle_config_param = current_request.params.bundle_config -%}
+
+                <div data-bundle-price>
+                  {%- render "products/product/bundle/pricing_display", product: current_product %}
                 </div>
-              </section>
+
+                <section id="SC-BundleProducts" class="sc-pos-relative">
+                  <div data-bundle="{{ current_product.id }}" data-bundle-type="v2" class="sc-flex-col sc-gap">
+                    {%- render "products/product/bundle/bundle_configurator",
+                                product: current_product,
+                                bundle_config_param: bundle_config_param,
+                                bundle_identifier: bundle_identifier_param %}
+                  </div>
+                </section>
+              {%- endif %}
             {%- else %}
               {%# Delivery and pickup %}
               <div class="sc-mb">
@@ -109,7 +133,13 @@
       </section>
 
       {%- if is_bundle %}
-        <div data-bundle-anchor-variants></div>
+        {%- if is_cpq_bundle %}
+          <div data-bundle-anchor-variants></div>
+        {%- else %}
+          <div data-bundle-anchor-variants>
+            {% render "products/product/bundle/anchor_variants", product: current_product %}
+          </div>
+        {%- endif %}
       {%- else %}
         <div class="SC-Accordions">
           {%- if current_product.features_content != blank %}

@@ -61,7 +61,7 @@
 
       <div class="SC-Header_inner_right sc-gap-medium">
         <ul class="SC-Menu tier1 end sc-justify-end" id="SC-HeaderMenuSecondary">
-          {%- render "header/dropdown/cart" %}
+          {%- component "cart-menu", reload: "sc.cart-updated sc.voucher-applied sc.voucher-removed" %}
         </ul>
         <button data-menu-init="header" class="sc-hide-medium-and-up" type="button">
           {%- render "shared/icons/hamburger" %}
