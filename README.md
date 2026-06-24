@@ -1,10 +1,12 @@
 # Velvet Cascade Theme
 
+**Version: StoreConnect v21**
+
 ![velvet-cascade-theme](https://github.com/user-attachments/assets/7a49772c-63ad-42c2-bedb-4d7a465c0406)
 
 Velvet Cascade theme - Multi-concept theme ideal for child and babies retail stores, boutiques, and clothing industries.
 
-**Key features:** Innovative layouts and elements, expandable search bar, slide-out cart sidebar, color swatches for product with variants and sliders. 
+**Key features:** Innovative layouts and elements, expandable search bar, slide-out cart sidebar, color swatches for product with variants and sliders.
 
 ## Setting up your theme
 
